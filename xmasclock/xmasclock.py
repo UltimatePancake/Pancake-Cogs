@@ -1,3 +1,4 @@
+import datetime
 import discord
 from discord.ext import commands
 
@@ -9,10 +10,13 @@ class xmasclock:
 
     @commands.command()
     async def xmasclock(self):
-        """This does stuff!"""
+        """Display days left 'til xmas"""
 
         #code
         await self.bot.say("I can do stuff!")
+        now = datetime.datetime.now()
+        await self.bot.say(now.isoformat())
+
 
 def setup(bot):
     bot.add_cog(xmasclock(bot))
