@@ -16,7 +16,12 @@ class xmasclock:
 
         now = datetime.datetime.now()
         today = date(now.year, now.month, now.day)
-        xmasday = date(now.year, 12, 25)
+
+        year = now.year
+        if (now.month == 12 and now.day > 25):
+            year = now.year + 1
+
+        xmasday = date(year, 12, 25)
 
         delta = xmasday - today
 
