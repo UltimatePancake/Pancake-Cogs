@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from .utils.dataIO import fileIO
 
 
 class dickbutt:
@@ -7,15 +8,15 @@ class dickbutt:
 
     def __init__(self, bot):
         self.bot = bot
+        self.image = fileIO("data/dickbutt/dickbutt.jpg", "load")
 
     @commands.command()
     async def dickbutt(self, ctx):
         """Let me reiterate, dickbutt"""
 
         # code
-        image = "data/dickbutt/dickbutt.jpg"
         channel = ctx.message.channel
-        await self.bot.send_file(channel, image)
+        await self.bot.send_file(channel, self.image)
 
 
 def setup(bot):
