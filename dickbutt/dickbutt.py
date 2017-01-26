@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from .utils.dataIO import fileIO
 
 
 class dickbutt:
@@ -8,7 +7,7 @@ class dickbutt:
 
     def __init__(self, bot):
         self.bot = bot
-        self.image = fileIO("data/dickbutt/dickbutt.jpg", "load")
+        self.image = "data/dickbutt/dickbutt.jpg"
 
     @commands.command()
     async def dickbutt(self, ctx):
