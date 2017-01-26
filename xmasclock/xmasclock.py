@@ -25,7 +25,7 @@ class xmasclock:
 
         delta = xmasday - today
 
-        await self.bot.say(str(delta.days) + " days left until Xmas!")
+        await self.bot.say("```" + str(delta.days) + " days left until Xmas!```")
 
 
 def setup(bot):
