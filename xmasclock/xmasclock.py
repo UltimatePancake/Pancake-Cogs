@@ -3,6 +3,7 @@ from datetime import date
 import discord
 from discord.ext import commands
 
+
 class xmasclock:
     """I did it!"""
 
@@ -17,9 +18,9 @@ class xmasclock:
         today = date(now.year, now.month, now.day)
         xmasday = date(now.year, 12, 25)
 
-        delta = today - xmasday
+        delta = xmasday - today
 
-        await self.bot.say(delta.days)
+        await self.bot.say(delta.days + " days left until Xmas!")
 
 
 def setup(bot):
