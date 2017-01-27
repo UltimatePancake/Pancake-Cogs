@@ -9,7 +9,7 @@ class dickbutt:
         self.bot = bot
         self.image = "data/dickbutt/dickbutt.jpg"
 
-    @commands.command()
+    @commands.command(pass_context=True)
     async def dickbutt(self, ctx):
         """Let me reiterate, dickbutt"""
 
