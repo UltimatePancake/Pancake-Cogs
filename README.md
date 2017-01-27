@@ -1,3 +1,6 @@
+ [![PyPI](https://img.shields.io/badge/Python-3.5-blue.svg)](https://www.python.org/downloads/) 
+[![Red Bot](https://img.shields.io/badge/Discord-Red%20Bot-red.svg)](https://github.com/Twentysix26/Red-DiscordBot)
+
 # Pancake-Cogs
 Part of my ongoing Python experiments, just doing this for the hell of it.
 
