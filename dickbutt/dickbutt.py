@@ -10,12 +10,12 @@ class dickbutt:
         self.image = "data/dickbutt/dickbutt.jpg"
 
     @commands.command()
-    async def dickbutt(self):
+    async def dickbutt(self, ctx):
         """Let me reiterate, dickbutt"""
 
         # code
-        # channel = ctx.message.channel
-        await self.bot.send_file(self.image)
+        channel = ctx.channel
+        await self.bot.send_file(channel, self.image)
 
 
 def setup(bot):
