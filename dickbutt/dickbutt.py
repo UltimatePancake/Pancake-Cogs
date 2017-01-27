@@ -14,7 +14,7 @@ class dickbutt:
         """Let me reiterate, dickbutt"""
 
         # code
-        channel = ctx.channel
+        channel = ctx.message.channel
         await self.bot.send_file(channel, self.image)
 
 
