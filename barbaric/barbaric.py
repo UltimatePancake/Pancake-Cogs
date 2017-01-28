@@ -17,14 +17,7 @@ class barbaric:
         channel = ctx.message.channel
         await self.bot.send_file(channel, self.image)
 
-    async def listener(self, message):
-        if message.author.id != self.bot.user.id:
-            #if 'barbaric' in message.content.lower():
-            if message.content.lower().find('barbaric', 0, len(message.content)):
-                await self.bot.send_file(channel, self.image)
-
 
 def setup(bot):
     n = barbaric(bot)
-    bot.add_listener(n.listener, "on_message")
     bot.add_cog(n)
