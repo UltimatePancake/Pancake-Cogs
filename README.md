@@ -1,4 +1,5 @@
- [![PyPI](https://img.shields.io/badge/Python-3.5-blue.svg)](https://www.python.org/downloads/) 
+[![Build Status](https://travis-ci.org/UltimatePancake/Pancake-Cogs.svg?branch=master)](https://travis-ci.org/UltimatePancake/Pancake-Cogs)
+[![PyPI](https://img.shields.io/badge/Python-3.5-blue.svg)](https://www.python.org/downloads/) 
 [![Red Bot](https://img.shields.io/badge/Discord-Red%20Bot-red.svg)](https://github.com/Twentysix26/Red-DiscordBot)
 
 # Pancake-Cogs
