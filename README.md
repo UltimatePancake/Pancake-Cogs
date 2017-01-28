@@ -2,7 +2,7 @@
 [![Red Bot](https://img.shields.io/badge/Discord-Red%20Bot-red.svg)](https://github.com/Twentysix26/Red-DiscordBot)
 
 # Pancake-Cogs
-Part of my ongoing Python experiments, just doing this for the hell of it.
+Messing around with Python, because it's fun and it takes my mind off of Java (blegh...).
 
 **Made these cogs with my own server in mind and cannot guarantee they will work.**
 
