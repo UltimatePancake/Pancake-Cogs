@@ -19,7 +19,8 @@ class barbaric:
 
     async def listener(self, message):
         if message.author.id != self.bot.user.id:
-            if 'barbaric' in message.content.lower():
+            #if 'barbaric' in message.content.lower():
+            if message.content.lower().find('barbaric', 0, len(message.content)):
                 await self.bot.send_file(channel, self.image)
 
 
