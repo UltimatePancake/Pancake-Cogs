@@ -1,7 +1,7 @@
 {
     "AUTHOR" : "UltimatePancake",
-    "INSTALL_MSG" : "There is absolutely no reason for you to do this.\n\n Srsly though, stop it...",
+    "INSTALL_MSG" : "Thanks for adding my repo! Remember to have fun.",
     "NAME" : "Pancake-Cogs",
     "SHORT" : "Messing around in python, because reasons.",
-    "DESCRIPTION" : "```diff\n--WARNING--\n```I cannot guarantee anything here will actually work."
+    "DESCRIPTION" : "```diff\n--WARNING--\n```I cannot guarantee anything here will actually work.\nHit me up on my github if something needs fixin'\nhttps://github.com/UltimatePancake/Pancake-Cogs"
 }

@@ -1,7 +1,8 @@
 {
     "AUTHOR" : "UltimatePancake",
-    "INSTALL_MSG" : "OH SHIT WADDUP!",
-    "NAME" : "Dickbutt",
-    "SHORT" : "IT'S YA BOI",
-    "DESCRIPTION" : "WARNING: has a tendency to crash... constantly..."
+    "INSTALL_MSG" : "[p]barbaric to go dank.",
+    "NAME" : "Barbaric",
+    "SHORT" : "Absolutely barbaric",
+    "DESCRIPTION" : "Displays the 'absolutely barbaric' meme.",
+    "TAGS ": ["meme", "barbaric"]
 }

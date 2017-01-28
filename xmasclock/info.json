@@ -1,7 +1,8 @@
 {
     "AUTHOR" : "UltimatePancake",
-    "INSTALL_MSG" : "OH SHIT WADDUP!",
-    "NAME" : "Xmas Clock",
-    "SHORT" : "Count dem days 'til xmas yo...",
-    "DESCRIPTION" : "WARNING: has a tendency to crash... constantly..."
+    "INSTALL_MSG" : "[p]xmasclock to display the days remaining until Xmas.",
+    "NAME" : "XmasClock",
+    "SHORT" : "Days 'til Xmas!",
+    "DESCRIPTION" : "Displays the days remaining until next Xmas.",
+    "TAGS" : ["xmas", "christmas", "countdown"]
 }

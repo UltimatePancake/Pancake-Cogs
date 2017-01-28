@@ -3,16 +3,16 @@ from discord.ext import commands
 import random
 
 
-class onetruegod:
+class OneTrueGod:
     """Everything was Nicolas Cage."""
 
     def __init__(self, bot):
         self.bot = bot
         self.placecage = "https://www.placecage.com/"
 
-    @commands.command()
+    @commands.commands(name="onetruegod", aliases=["cage"])
     async def onetruegod(self):
-        """And nothing hurt..."""
+        """Post random Nicolas Cage image from placecage.com"""
 
         # code
         w = random.randint(200, 700)
@@ -21,4 +21,4 @@ class onetruegod:
 
 
 def setup(bot):
-    bot.add_cog(onetruegod(bot))
+    bot.add_cog(OneTrueGod(bot))

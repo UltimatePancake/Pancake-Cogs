@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class barbaric:
+class Barbaric:
     """Absolutely"""
 
     def __init__(self, bot):
@@ -11,7 +11,7 @@ class barbaric:
 
     @commands.command(pass_context=True)
     async def barbaric(self, ctx):
-        """Barbaric"""
+        """Displays dank meme 'absolutely barbaric'"""
 
         # code
         channel = ctx.message.channel
@@ -19,5 +19,5 @@ class barbaric:
 
 
 def setup(bot):
-    n = barbaric(bot)
+    n = Barbaric(bot)
     bot.add_cog(n)

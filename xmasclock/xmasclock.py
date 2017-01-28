@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 
-class xmasclock:
+class XmasClock:
     """I did it!"""
 
     def __init__(self, bot):
@@ -29,4 +29,4 @@ class xmasclock:
 
 
 def setup(bot):
-    bot.add_cog(xmasclock(bot))
+    bot.add_cog(XmasClock(bot))

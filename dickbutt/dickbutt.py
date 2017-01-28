@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-class dickbutt:
+class Dickbutt:
     """Yes, dickbutt."""
 
     def __init__(self, bot):
@@ -11,7 +11,7 @@ class dickbutt:
 
     @commands.command(pass_context=True)
     async def dickbutt(self, ctx):
-        """Let me reiterate, dickbutt"""
+        """Displays dank meme 'dickbutt'"""
 
         # code
         channel = ctx.message.channel
@@ -19,4 +19,4 @@ class dickbutt:
 
 
 def setup(bot):
-    bot.add_cog(dickbutt(bot))
+    bot.add_cog(Dickbutt(bot))

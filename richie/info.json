@@ -1,7 +1,8 @@
 {
     "AUTHOR" : "UltimatePancake",
-    "INSTALL_MSG" : "I can see it in your smile",
+    "INSTALL_MSG" : "Quotes the Lionel Richie song when someone says 'hello'",
     "NAME" : "Richie",
-    "SHORT" : "HELLOOOO",
-    "DESCRIPTION" : "WARNING: has a tendency to crash... constantly..."
+    "SHORT" : "Is it me you're looking for?",
+    "DESCRIPTION" : "Quotes the hit 1984 Lionel Richie song 'Hello' when someone starts a message with 'hello'",
+    "TAGS" : ["lionel", "richie", "hello"]
 }

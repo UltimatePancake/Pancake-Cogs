@@ -1,7 +1,8 @@
 {
     "AUTHOR" : "UltimatePancake",
-    "INSTALL_MSG" : "You have been Caged...",
+    "INSTALL_MSG" : "[p]onetruegod or [p]cage to display a random Nicolas Cage image.",
     "NAME" : "One True God",
-    "SHORT" : "Bask in his glory",
-    "DESCRIPTION" : "WARNING: has a tendency to crash... constantly..."
+    "SHORT" : "Displays random Nicolas Cage images!",
+    "DESCRIPTION" : "Displays random Nicolas Cage images from placecage.com",
+    "TAGS" : ["nicolas", "cage", "onetruegod"]
 }

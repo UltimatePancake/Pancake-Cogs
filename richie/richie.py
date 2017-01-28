@@ -1,8 +1,8 @@
 import discord
 
 
-class richie:
-    """Is it me you're looking for?"""
+class Richie:
+    """Responds to 'hello' by quoting the hit 1984 song 'Hello' by Lionel Richie"""
 
     def __init__(self, bot):
         self.bot = bot
@@ -15,6 +15,6 @@ class richie:
 
 
 def setup(bot):
-    n = richie(bot)
+    n = Richie(bot)
     bot.add_listener(n.listener, "on_message")
     bot.add_cog(n)
