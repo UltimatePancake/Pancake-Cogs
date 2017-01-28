@@ -4,5 +4,6 @@
     "NAME" : "Dictionary",
     "SHORT" : "Gets definitions, synonyms or antonyms for given words",
     "DESCRIPTION" : "Gets definitions, synonyms or antonyms for given words",
-    "TAGS" : ["dictionary"]
+    "TAGS" : ["dictionary"],
+    "Requirements" : ["PyDictionary"]
 }
