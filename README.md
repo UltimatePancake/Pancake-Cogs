@@ -8,4 +8,6 @@ Messing around with Python, because it's fun and it takes my mind off of Java (b
 
 **Made these cogs with my own server in mind and cannot guarantee they will work.**
 
+**These are also pretty much just simple joke cogs to entertain friends. Not meant to be taken too seriously as a development effort.**
+
 If reported though, I will try my best to fix it for you... when I have time.
