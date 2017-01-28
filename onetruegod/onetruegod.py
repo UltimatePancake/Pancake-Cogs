@@ -10,7 +10,7 @@ class OneTrueGod:
         self.bot = bot
         self.placecage = "https://www.placecage.com/"
 
-    @commands.commands(name="onetruegod", aliases=["cage"])
+    @commands.command(name="onetruegod", aliases=["cage"])
     async def onetruegod(self):
         """Post random Nicolas Cage image from placecage.com"""
 
