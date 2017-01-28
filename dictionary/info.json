@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "UltimatePancake",
+    "INSTALL_MSG" : "[p]define|synonym|antonym <word> to get the respective request of a given word.",
+    "NAME" : "Dictionary",
+    "SHORT" : "Gets definitions, synonyms or antonyms for given words",
+    "DESCRIPTION" : "Gets definitions, synonyms or antonyms for given words",
+    "TAGS" : ["dictionary"]
+}
