@@ -37,6 +37,9 @@ class MMR:
         solo_mmr = dds[1].contents[0]
         party_mmr = dds[2].contents[0]
 
+        if len(party_mmr) > 4:
+            party_mmr = "TBD"
+
         embed = discord.Embed(colour=0xD00262)
         embed.set_author(name=str(user.name), icon_url=user.avatar_url)
         embed.add_field(name="Solo MMR", value=solo_mmr)
