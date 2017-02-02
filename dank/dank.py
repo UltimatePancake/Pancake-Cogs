@@ -24,7 +24,7 @@ class Dank:
     async def pathetic(self, ctx):
         """Pathetic."""
         await self.bot.send_file(ctx.message.channel,
-                                 "{}pathetic.jpg".format(self.base))
+                                 "{}pathetic.png".format(self.base))
 
 
 def setup(bot):
