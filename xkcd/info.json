@@ -1,0 +1,9 @@
+{
+    "AUTHOR" : "UltimatePancake",
+    "INSTALL_MSG" : "Displays latest, random or specific xkcd comic.",
+    "NAME" : "XKCD",
+    "SHORT" : "Xkcd comic display.",
+    "DESCRIPTION" : "Xkcd comic display.",
+    "TAGS" : ["xkcd"],
+    "REQUIREMENTS" : ["xkcd"]
+}
