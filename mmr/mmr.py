@@ -27,6 +27,14 @@ class MMR:
     async def mmr(self, ctx, user: discord.Member):
         """Shows MMR for user (if registered in file)."""
         dota2_id = self.get_player_id(user)
+        if dota2_id is None:
+            not_exist = "```\n"
+            not_exist += user.display_name
+            not_exist += " not registered in file.\n"
+            not_exist += "Please use [p]mmradd <user> <dota2_id> to register.\n"
+            not_exist += "```"
+            await self.bot.say(not_exist)
+            return
         url = urljoin(self.dotabuff, dota2_id)
         header = {'User-Agent': 'Friendly Red bot'}
         req = Request(url, headers=header)
@@ -36,6 +44,9 @@ class MMR:
         dds = section[0].findAll("dd")
         solo_mmr = dds[1].contents[0]
         party_mmr = dds[2].contents[0]
+
+        if len(solo_mmr) > 4:
+            solo_mmr = "TBD"
 
         if len(party_mmr) > 4:
             party_mmr = "TBD"
