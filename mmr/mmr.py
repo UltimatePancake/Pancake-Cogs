@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from .utils import checks
 from .utils.dataIO import fileIO, dataIO
 import os
+import random
 
 
 class MMR:
@@ -51,8 +52,11 @@ class MMR:
         if len(party_mmr) > 4:
             party_mmr = "TBD"
 
-        embed = discord.Embed(colour=0xD00262)
-        embed.set_author(name=str(user.name), icon_url=user.avatar_url)
+        random_color = int("0x%06x" % random.randint(0, 0xFFFFFF), 16)
+
+        embed = discord.Embed(colour=random_color)
+        embed.set_author(name=str(user.name))
+        embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Solo MMR", value=solo_mmr)
         embed.add_field(name="Party MMR", value=party_mmr)
 
