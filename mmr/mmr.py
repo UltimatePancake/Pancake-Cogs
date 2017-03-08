@@ -21,8 +21,8 @@ class MMR:
         data = self.players
         players = data["players"]
         for player in players:
-            if user.name == player["name"]:
-                return player["id"]
+            if user.id == player["discord_id"]:
+                return player["dota2_id"]
 
     @commands.command(pass_context=True)
     async def mmr(self, ctx, user: discord.Member):
@@ -68,8 +68,8 @@ class MMR:
         """Adds player to file."""
         full_data = self.players
         players = full_data["players"]
-        row = {"id": dota2_id, "name": user.name}
-        if not any(player["name"] == user.name for player in players):
+        row = {"dota2_id": dota2_id, "discord_id": user.id}
+        if not any(player["discord_id"] == user.id for player in players):
             players.append(row)
             fileIO("data/mmr/players.json", "save", full_data)
             await self.bot.say("Player added!")
