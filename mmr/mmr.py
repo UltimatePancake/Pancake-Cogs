@@ -84,13 +84,12 @@ class MMR:
         full_data = self.players
         players = full_data["players"]
         row = {"dota2_id": dota2_id, "discord_id": user.id}
-        if not any(player["discord_id"] == user.id for player in players):
-            await self.bot.say("Player not in file, use [p]mmradd to add first.")
-        else:
-            players.remove(player)
-            players.append(row)
-            fileIO("data/mmr/players.json", "save", full_data)
-            await self.bot.say("Player updated!")
+        for player in players:
+            if player["discord_id"] == user.id:
+                players.remove(player)
+                players.append(row)
+                fileIO("data/mmr/players.json", "save", full_data)
+                await self.bot.say("Player updated!")
 
 
 def check_folder():
