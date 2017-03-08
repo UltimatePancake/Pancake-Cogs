@@ -87,7 +87,7 @@ class MMR:
         if not any(player["discord_id"] == user.id for player in players):
             await self.bot.say("Player not in file, use [p]mmradd to add first.")
         else:
-            players.delete(player)
+            players.remove(player)
             players.append(row)
             fileIO("data/mmr/players.json", "save", full_data)
             await self.bot.say("Player updated!")
