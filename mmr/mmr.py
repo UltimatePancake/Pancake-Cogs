@@ -59,6 +59,7 @@ class MMR:
         embed.set_thumbnail(url=user.avatar_url)
         embed.add_field(name="Solo MMR", value=solo_mmr)
         embed.add_field(name="Party MMR", value=party_mmr)
+        embed.url = url
 
         await self.bot.say(embed=embed)
 
@@ -74,7 +75,22 @@ class MMR:
             fileIO("data/mmr/players.json", "save", full_data)
             await self.bot.say("Player added!")
         else:
-            await self.bot.say("Player already exists...")
+            await self.bot.say("Player already exists, use [p]mmrupdate to update user info.")
+            
+    @commands.command(name="mmrupdate", pass_context=True)
+    @checks.mod_or_permissions(manage_server=True)
+    async def update_user(self, ctx, user: discord.Member, dota2_id: str):
+        """Updates player in file."""
+        full_data = self.players
+        players = full_data["players"]
+        row = {"dota2_id": dota2_id, "discord_id": user.id}
+        if not any(player["discord_id"] == user.id for player in players):
+            await self.bot.say("Player not in file, use [p]mmradd to add first.")
+        else:
+            players.delete(player)
+            players.append(row)
+            fileIO("data/mmr/players.json", "save", full_data)
+            await self.bot.say("Player updated!")
 
 
 def check_folder():
