@@ -6,6 +6,7 @@ from .utils import checks
 from tabulate import tabulate
 import os
 import random
+import urllib
 
 class Challonge:
     """Sweet hitch-hiker"""
@@ -39,11 +40,11 @@ class Challonge:
     @challonge.command(name="listtournaments")
     async def _listtournaments(self):
         """So nail the hearts"""
-        headers = ["Name", "ID"]
+        headers = ["Name", "ID", "Game", "Participants", "Tournament type", "State"]
         table = []
         for t in tournaments.index():
             if t["state"] == "underway" or t["state"] == "pending":
-                table.append([t["name"], t["id"]])
+                table.append([t["name"], t["id"], t["game-name"], t["participants-count"], t["tournament-type"], t["state"]])
         result = "```\n"
         result += tabulate(table, headers)
         result += "\n```"
@@ -65,6 +66,28 @@ class Challonge:
                 embed.set_footer(text="ID: " + str(t["id"]))
 
                 await self.bot.say(embed=embed)
+
+    @challonge.command(name="showT")
+    async def _showtournament(self, id: int):
+        """Retrieve a single tournament record"""
+        try:
+            t = tournaments.show(id)
+            random_colour = int("0x%06x" % random.randint(0, 0xFFFFFF), 16)
+            embed = discord.Embed(colour=random_colour)
+            embed.set_image(url=t["live-image-url"])
+            embed.set_thumbnail(url=t["live-image-url"])
+            embed.url = t["full-challonge-url"]
+            embed.title = t["name"]
+            embed.add_field(name="Tournament format", value=t["tournament-type"].title())
+            embed.add_field(name="Participants", value=t["participants-count"])
+            embed.add_field(name="Progress", value=get_progress_bar(t["progress-meter"]))
+            embed.set_footer(text="ID: " + str(t["id"]))
+            await self.bot.say(embed=embed)
+        except urllib.error.HTTPError as err:
+            if err.code == 404:
+                await self.bot.say("Tournament with Id: {} not found".format(id))
+
+
 
     @challonge.command(name="createtournament")
     async def _createtournament(self, name: str, url: str, format: str="single elimination"):
@@ -113,6 +136,15 @@ class Challonge:
                 participants.create(tournament, user.id)
                 await self.bot.say("User " + user.mention + " has been added to tournament " + str(tournament) + ".")
 
+
+def get_progress_bar(progress):
+
+    totalP = 100
+    barP = 50
+    filledP = int(round(barP * progress / float(totalP)))
+    percentP = round(100.0 * progress / float(totalP), 1)
+    bar = str(progress)+"%" + "[" + ('#' * filledP) + '-' * (barP - filledP)+"]"
+    return bar
 
 def check_folder():
     if not os.path.exists("data/challonge"):
