@@ -1,3 +1,8 @@
 {
-    "AUTHOR" : "UltimatePancake"
+    "AUTHOR" : "UltimatePancake",
+    "INSTALL_MSG" : "Displays a user's DOTA2 MMR, pulled from Dotabuff.com",
+    "NAME" : "MMR",
+    "SHORT" : "DOTA2 MMR retriever",
+    "DESCRIPTION" : "DOTA2 MMR retriever",
+    "TAGS" : ["dota", "dota2", "mmr"]
 }
