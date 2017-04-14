@@ -5,7 +5,7 @@ from discord.ext import commands
 
 
 class XmasClock:
-    """I did it!"""
+    """Simple display of days left until next xmas"""
 
     def __init__(self, bot):
         self.bot = bot
