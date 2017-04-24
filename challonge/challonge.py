@@ -70,8 +70,8 @@ class Challonge:
     @challonge.command(name="showT")
     async def _showtournament(self, id: int):
         """Retrieve a single tournament record"""
-        try:
-            t = tournaments.show(id)
+        t = getTournament(id)
+        if not(t is None):
             random_colour = int("0x%06x" % random.randint(0, 0xFFFFFF), 16)
             embed = discord.Embed(colour=random_colour)
             embed.set_image(url=t["live-image-url"])
@@ -83,10 +83,8 @@ class Challonge:
             embed.add_field(name="Progress", value=get_progress_bar(t["progress-meter"]))
             embed.set_footer(text="ID: " + str(t["id"]))
             await self.bot.say(embed=embed)
-        except urllib.error.HTTPError as err:
-            if err.code == 404:
-                await self.bot.say("Tournament with Id: {} not found".format(id))
-
+        else:
+            await self.bot.say("Tournament with Id: {} not found".format(id))
 
 
     @challonge.command(name="createtournament")
@@ -103,6 +101,20 @@ class Challonge:
             if t["id"] == tournament:
                 await self.bot.say("Tournament " + t["name"] + "with id " + t["id"] + "has been deleted.")
                 tournaments.destroy(t["id"])
+
+    @challonge.command(name="deleteT")
+    async def _deletetournament(self, tournamentid:int):
+        """ Alternate method to delete a tournament without a for loop"""
+        t = getTournament(tournamentid)
+        if not(t is None):
+            await self.bot.say("Tournament found, removing..")
+            tournaments.destroy(tournamentid)
+            await self.bot.say("Tournament {0} with id {1} has been deleted.".format(t["name"],t["id"]))
+        else:
+            await self.bot.say("Tournament with Id: {} not found".format(tournamentid))
+
+
+
 
     @challonge.command(name="starttournament")
     async def _starttournament(self, tournament: int):
@@ -145,6 +157,14 @@ def get_progress_bar(progress):
     percentP = round(100.0 * progress / float(totalP), 1)
     bar = str(progress)+"%" + "[" + ('#' * filledP) + '-' * (barP - filledP)+"]"
     return bar
+
+def getTournament(tournamentid:int):
+    try:
+        t = tournaments.show(tournamentid)
+        return t
+    except urllib.error.HTTPError as err:
+        if err.code == 404:
+            return None
 
 def check_folder():
     if not os.path.exists("data/challonge"):
