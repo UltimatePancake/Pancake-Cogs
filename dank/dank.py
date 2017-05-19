@@ -26,6 +26,12 @@ class Dank:
         await self.bot.send_file(ctx.message.channel,
                                  "{}pathetic.png".format(self.base))
 
+    @commands.command(pass_context=True)
+    async def snoop(self, ctx):
+        """Snoop loves ya too."""
+        await self.bot.send_file(ctx.message.channel,
+                                 "{}snoop.jpg".format(self.base))
+
 
 def setup(bot):
     bot.add_cog(Dank(bot))
