@@ -12,7 +12,7 @@ class Exchange:
         """Currency converter
         Set the amount, currency TO and currency FROM
         Available currencies for conversion:
-        AUD BGN BRL CAD CHF CNY CZK DKK GBP HKD HRK HUF IDR ILS INR JPY KRW MXN MYR NOK NZD PHP PLN RON RUB SEK SGD THB TRY USD ZAR
+        AUD BGN BRL CAD CHF CNY CZK DKK EUR GBP HKD HRK HUF IDR ILS INR JPY KRW MXN MYR NOK NZD PHP PLN RON RUB SEK SGD THB TRY USD ZAR
         ***WARNING***
         Conversion may not be exact"""
         api = 'http://api.fixer.io/latest?base={}'.format(base)
