@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "UltimatePancake",
+    "INSTALL_MSG" : "[p]moneyconvert <amount> <currency_from> <currency_to>",
+    "NAME" : "Exchange",
+    "SHORT" : "Currency converter",
+    "DESCRIPTION" : "Available currencies for conversion: AUD BGN BRL CAD CHF CNY CZK DKK GBP HKD HRK HUF IDR ILS INR JPY KRW MXN MYR NOK NZD PHP PLN RON RUB SEK SGD THB TRY USD ZAR",
+    "TAGS" : ["currency", "convert", "exchange"],
+}
