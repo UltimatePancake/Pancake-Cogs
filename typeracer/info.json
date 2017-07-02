@@ -3,6 +3,6 @@
     "INSTALL_MSG" : "[p]typeracer <typeracer username>",
     "NAME" : "Typeracer",
     "SHORT" : "Typeracer user stats",
-    "DESCRIPTION" : "Displays user stats typeracer API",
+    "DESCRIPTION" : "Displays user stats from typeracer API",
     "TAGS" : ["typeracer", "wpm"]
 }
