@@ -4,5 +4,5 @@
     "NAME" : "Typeracer",
     "SHORT" : "Typeracer user stats",
     "DESCRIPTION" : "Displays user stats typeracer API",
-    "TAGS" : ["typeracer"]
+    "TAGS" : ["typeracer", "wpm"]
 }
