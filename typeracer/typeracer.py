@@ -31,7 +31,8 @@ class TypeRacer:
                 embed.add_field(name='Average WPM', value=int(result['tstats']['wpm']))
                 embed.add_field(name='Best WPM', value=int(result['tstats']['bestGameWpm']))
                 embed.add_field(name='Recent scores', value=last_scores)
-                embed.set_footer(text='typeracer.com', icon_url='http://play.typeracer.com/')
+                embed.set_footer(text='typeracer.com')
+                embed.url = 'http://play.typeracer.com/'
 
                 await self.bot.say(embed=embed)
             else:
