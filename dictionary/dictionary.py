@@ -20,6 +20,9 @@ class Dictionary:
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.meaning(search_term)
         str_buffer = ""
+        if result is None:
+            await self.bot.say("This word is not in the dictionary.")
+            return
         for key in result:
             str_buffer += "\n**" + key + "**: \n"
             counter = 1
