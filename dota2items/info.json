@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "Fulgore",
+    "INSTALL_MSG" : "[p]help to see what commands are available.",
+    "NAME" : "Dota 2 Items",
+    "SHORT" : "It displays detailed information about Dota in-game items",
+    "DESCRIPTION" : "It displays detailed information about Dota in-game items.",
+    "TAGS" : ["dota2", "educational", "dota2items"]
+}
