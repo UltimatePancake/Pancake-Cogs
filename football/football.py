@@ -28,10 +28,11 @@ class Football:
             'User-Agent': 'Friendly Red bot'
         }
 
-        if 'API_TOKEN' in self.config[server_id]:
-            await self.bot.say(box('Requests made without an authentication token are limited to 100 requests per 24 hours.\nYou can request a key by registering at http://api.football-data.org and setting it via [p]football tokenset.'))
+        if server_id in self.config:
+            if 'API_TOKEN' in self.config[server_id]:
+                headers['X-Auth-Token'] = self.config['API_TOKEN']
         else:
-            headers['X-Auth-Token'] = self.config['API_TOKEN']
+            await self.bot.say(box('Requests made without an authentication token are limited to 100 requests per 24 hours.\nYou can request a key by registering at http://api.football-data.org and setting it via [p]football tokenset.'))
 
         async with aiohttp.get(url, headers=headers, params=params) as r:
             #  pprint(vars(r))
