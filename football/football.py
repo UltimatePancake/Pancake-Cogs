@@ -223,7 +223,7 @@ class Football:
         await self.bot.say(box(tabulate(pretty_data, headers=headers)))
 
     @football.command(pass_context=True)
-    async def team(self, ctx: commands.Context, team_id: str=None, show_players: bool=False):
+    async def team(self, ctx: commands.Context, team_id: str=None, show_players: bool=True):
         """Gets team information"""
         if team_id is None:
             await self.bot.send_cmd_help(ctx)
