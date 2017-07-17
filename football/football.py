@@ -68,7 +68,11 @@ class Football:
         return await self._make_request(url, params, server_id)
 
     async def _get_league_fixtures_timeframe(self, server_id: str, league_id: str, timeframe: str):
-        """Retrieves specific league matchday fixtures from API"""
+        """Retrieves specific league matchday fixtures from API
+
+        Optional timeframe parameter:
+        The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
+        For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
         params = { 'timeFrame': timeframe }
         url = self.api_url + 'competitions/{}/fixtures'.format(league_id)
 
@@ -82,8 +86,12 @@ class Football:
         return await self._make_request(url, params, server_id)
 
     async def _get_league_leaderboard(self, server_id: str, league_id: str, timeframe: str):
-        """Retrieves specific league leaderboard from API"""
-        params = { 'timeframe': timeframe}
+        """Retrieves specific league leaderboard from API
+
+        Optional timeframe parameter:
+        The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
+        For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
+        params = { 'timeFrame': timeframe }
         url = self.api_url + 'competitions/{}/leagueTable'.format(league_id)
 
         return await self._make_request(url, params, server_id)
