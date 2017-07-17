@@ -4,5 +4,6 @@
     "NAME" : "Football",
     "SHORT" : "Football stuff",
     "DESCRIPTION" : "Displays football league leaderboards, fixtures and team information from football-data.org" ,
-    "TAGS" : ["football", "stats"]
+    "TAGS" : ["football", "stats"],
+    "REQUIREMENTS" : ["tabulate"]
 }
