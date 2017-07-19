@@ -36,7 +36,7 @@ class TypeRacer:
 
                 await self.bot.say(embed=embed)
             else:
-                await self.bot.say('`Unable to retieve stats for user ' + user + '`')
+                await self.bot.say('`Unable to retieve stats for user {}`'.format(user))
 
 
 def setup(bot):
