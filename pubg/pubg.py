@@ -3,7 +3,7 @@ import aiohttp
 import os
 from discord.ext import commands
 from .utils import checks
-from .utils.dataIO import fileIO, dataIO
+from .utils.dataIO import dataIO
 from random import randint
 
 
@@ -35,10 +35,10 @@ class PUBG:
 
     async def _get_data(self, pubg_nickname: str, category: str, mode: str, region: str):
         """Gets user data from API"""
-        if (mode not in self.modes):
+        if mode not in self.modes:
             await self.bot.say('Mode `' + mode + '` is invalid\nAvailable modes are: ' + ', '.join(self.modes))
             return
-        if (region not in self.regions):
+        if region not in self.regions:
             await self.bot.say('Region `' + region + '` is invalid\nAvailable regions are: ' + ', '.join(self.regions))
             return
         try:
