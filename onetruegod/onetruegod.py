@@ -17,7 +17,7 @@ class OneTrueGod:
         # code
         w = random.randint(200, 700)
         h = random.randint(200, 700)
-        await self.bot.say(self.placecage + str(w) + "/" + str(h))
+        await self.bot.say('{}{}/{}'.format(self.placecage, str(w), str(h)))
 
 
 def setup(bot):
