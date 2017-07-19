@@ -16,11 +16,12 @@ class Dictionary:
     async def define(self, ctx, *, word: str):
         """Displays definitions of a given word"""
         # TODO: Figure out why some values get cut off
-        await self.bot.say("Searching...")
+        x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.meaning(search_term)
         str_buffer = ""
         if result is None:
+            await self.bot.delete_message(x)
             await self.bot.say("This word is not in the dictionary.")
             return
         for key in result:
@@ -40,6 +41,7 @@ class Dictionary:
                         str_buffer += str(counter) + ". " + val + "\n"
                         counter += 1
         print(str_buffer)
+        await self.bot.delete_message(x)
         await self.bot.say(str_buffer)
 
     @commands.command(name="antonym", pass_context=True)
