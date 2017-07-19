@@ -47,17 +47,19 @@ class Dictionary:
     @commands.command(name="antonym", pass_context=True)
     async def antonym(self, ctx, *, word: str):
         """Displays antonyms for a given word"""
-        await self.bot.say("Searching...")
+        x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.antonym(search_term)
+        await self.bot.delete_message(x)
         await self.bot.say("Antonyms for **" + search_term + "**: *" + "*, *".join(result) + "*")
 
     @commands.command(name="synonym", pass_context=True)
     async def synonym(self, ctx, *, word: str):
         """Displays synonyms for a given word"""
-        await self.bot.say("Searching...")
+        x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.synonym(search_term)
+        await self.bot.delete_message(x)
         await self.bot.say("Synonyms for **" + search_term + "**: *" + "*, *".join(result) + "*")
 
     # TODO: find a fix for the 400 error when trying to translate
