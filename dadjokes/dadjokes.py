@@ -1,6 +1,7 @@
 from discord.ext import commands
 import aiohttp
 
+
 class DadJokes:
     """Random dad jokes from icanhazdadjoke.com"""
 
@@ -13,7 +14,7 @@ class DadJokes:
         api = 'https://icanhazdadjoke.com/'
         async with aiohttp.request('GET', api, headers={'Accept': 'text/plain'}) as r:
             result = await r.text()
-            await self.bot.say('`' + result + '`')
+            await self.bot.say('`{}`'.format(result))
 
 
 def setup(bot):
