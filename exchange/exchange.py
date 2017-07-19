@@ -26,7 +26,7 @@ class Exchange:
                 converted_amount = amount * rate
                 pre_conv = '{0:.2f}'.format(amount)
                 post_conv = '{0:.2f}'.format(converted_amount)
-                await self.bot.say('`' + base.upper() + ' ' + pre_conv + ' = ' + to.upper() + ' ' + post_conv + '`')
+                await self.bot.say('`{} {} = {} {}`'.format_map(base.upper(), pre_conv, to.upper(), post_conv))
 
 
 def setup(bot):
