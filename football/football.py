@@ -8,8 +8,6 @@ from .utils import checks
 from .utils.dataIO import dataIO
 from .utils.chat_formatting import pagify, box
 
-from pprint import pprint
-
 
 class Football:
     """Football stats"""
@@ -37,7 +35,6 @@ class Football:
         async with aiohttp.get(url, headers=headers, params=params) as r:
             if r.status == 200:
                 data = await r.json()
-                pprint(data)
                 return data
             elif r.status == 400:
                 await self.bot.say(box('Bad Request [400]:\nYour request was malformed most likely the value of a Filter was not set according to the Data Type that is expected.'))
@@ -140,7 +137,6 @@ class Football:
         """Gets league leaderboard"""
         headers = [' ', 'ID', 'Team', 'Points', 'P', 'G', 'GA', 'GD']
         data = await self._get_league_leaderboard(ctx.message.server.id, league_id, matchday)
-        pprint(data)
         pretty_data = []
 
         #  await self.bot.say('```diff\n+ ' + data['leagueCaption'] + '\n- Matchday: ' + str(data['matchday']) + '\n```')
@@ -173,7 +169,6 @@ class Football:
         """Gets last matchday fixtures"""
         headers = ['ID', 'Home', 'G', ' ', 'G', 'Away']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'p7')
-        #  pprint(data)
 
         await self.bot.say('```diff\n+ Last fixtures```')
         pretty_data = []
@@ -194,7 +189,6 @@ class Football:
         """Gets last matchday fixtures"""
         headers = ['ID', 'Home', ' ', 'Away', 'Date']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'n7')
-        #  pprint(data)
 
         await self.bot.say('```diff\n+ Next fixtures```')
         pretty_data = []
@@ -216,7 +210,6 @@ class Football:
         Defaults to matchday 1"""
         headers = ['ID', 'Home', ' ', ' ', 'Away']
         data = await self._get_league_fixtures_matchday(ctx.message.server.id, league_id, matchday)
-        #  pprint(data)
 
         await self.bot.say('```diff\n+ Matchday ' + matchday + ' fixtures```')
         pretty_data = []
@@ -253,7 +246,6 @@ class Football:
                 headers = ['Name', 'Jersey', 'Nationality', 'DoB', 'Position', 'Contract']
                 pretty_data = []
                 for player in team_players['players']:
-                    #  pprint(player)
                     pretty_data.append([
                         player['name'],
                         player['jerseyNumber'],
