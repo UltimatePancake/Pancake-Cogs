@@ -63,6 +63,49 @@ class MMR:
 
         await self.bot.say(embed=embed)
 
+    @commands.command(pass_context=True)
+    async def records(self, ctx, user: discord.Member):
+        """Shows Records for user (if registered in file)."""
+        dota2_id = self.get_player_id(user)
+        if dota2_id is None:
+            not_exist = '```\n'
+            not_exist += user.display_name
+            not_exist += ' not registered in file.\n'
+            not_exist += 'Please use [p]mmradd <user> <dota2_id> to register.\n'
+            not_exist += '```'
+            await self.bot.say(not_exist)
+            return
+
+        url = self.dotabuff + dota2_id + '/records'
+        header = {'User-Agent': 'Friendly Red bot'}
+
+        async with aiohttp.get(url, headers=header) as r:
+            soup = BeautifulSoup(await r.text(), 'html.parser')
+
+        section = soup.findAll('div', {'class': 'card'})
+        records = {}
+
+        for record in section:
+            k = record.find('div', {'class': 'title'}).contents[0]
+            v = record.find('div', {'class': 'value'}).contents[0]
+            h = record.find('div', {'class': 'hero'}).contents[0]
+            records[k] = { 'value' : v, 'hero' : h }
+
+        print(records)
+
+        embed = discord.Embed(colour=randint(0, 0xFFFFFF))
+        embed.set_author(name=str(user.name))
+        embed.set_thumbnail(url=user.avatar_url)
+
+        for k, v in records.items():
+            hero = v['hero'].split('  ')
+            embed.add_field(name=k, value='{}\n{}'.format(hero[0], v['value']))
+
+        embed.set_footer(text='id {}'.format(dota2_id), icon_url='http://cache1.www.gametracker.com/images/game_icons16/dota2.png')
+        embed.url = url
+
+        await self.bot.say(embed=embed)
+
     @commands.command(name="mmradd", pass_context=True)
     @checks.mod_or_permissions(manage_server=True)
     async def add_user(self, ctx, user: discord.Member, dota2_id: str):
