@@ -91,8 +91,6 @@ class MMR:
             h = record.find('div', {'class': 'hero'}).contents[0]
             records[k] = { 'value' : v, 'hero' : h }
 
-        print(records)
-
         embed = discord.Embed(colour=randint(0, 0xFFFFFF))
         embed.set_author(name=str(user.name))
         embed.set_thumbnail(url=user.avatar_url)
