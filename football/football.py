@@ -8,7 +8,7 @@ from .utils import checks
 from .utils.dataIO import dataIO
 from .utils.chat_formatting import pagify, box
 
-#  from pprint import pprint
+from pprint import pprint
 
 
 class Football:
@@ -35,9 +35,9 @@ class Football:
             await self.bot.say(box('Requests made without an authentication token are limited to 100 requests per 24 hours.\nYou can request a key by registering at http://api.football-data.org and setting it via [p]football tokenset.'))
 
         async with aiohttp.get(url, headers=headers, params=params) as r:
-            #  pprint(vars(r))
             if r.status == 200:
                 data = await r.json()
+                pprint(data)
                 return data
             elif r.status == 400:
                 await self.bot.say(box('Bad Request [400]:\nYour request was malformed most likely the value of a Filter was not set according to the Data Type that is expected.'))
@@ -62,7 +62,7 @@ class Football:
         if season is None:
             season = ''
 
-        params = { 'season': season }
+        params = {'season': season}
         url = self.api_url + 'competitions/'
 
         return await self._make_request(url, params, server_id)
@@ -73,25 +73,23 @@ class Football:
         Optional timeframe parameter:
         The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
         For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
-        params = { 'timeFrame': timeframe }
+        params = {'timeFrame': timeframe}
         url = self.api_url + 'competitions/{}/fixtures'.format(league_id)
 
         return await self._make_request(url, params, server_id)
 
     async def _get_league_fixtures_matchday(self, server_id: str, league_id: str, matchday: str):
         """Retrieves specific league matchday fixtures from API"""
-        params = { 'matchday': matchday }
+        params = {'matchday': matchday}
         url = self.api_url + 'competitions/{}/fixtures'.format(league_id)
 
         return await self._make_request(url, params, server_id)
 
-    async def _get_league_leaderboard(self, server_id: str, league_id: str, timeframe: str):
-        """Retrieves specific league leaderboard from API
-
-        Optional timeframe parameter:
-        The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
-        For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
-        params = { 'timeFrame': timeframe }
+    async def _get_league_leaderboard(self, server_id: str, league_id: str, matchday: str):
+        """Retrieves specific league leaderboard from API"""
+        if matchday is None:
+            matchday = ''
+        params = {'matchday': matchday}
         url = self.api_url + 'competitions/{}/leagueTable'.format(league_id)
 
         return await self._make_request(url, params, server_id)
@@ -142,9 +140,11 @@ class Football:
         """Gets league leaderboard"""
         headers = [' ', 'ID', 'Team', 'Points', 'P', 'G', 'GA', 'GD']
         data = await self._get_league_leaderboard(ctx.message.server.id, league_id, matchday)
+        pprint(data)
         pretty_data = []
 
-        await self.bot.say('```diff\n+ ' + data['leagueCaption'] + '\n- Matchday: ' + str(data['matchday']) + '\n```')
+        #  await self.bot.say('```diff\n+ ' + data['leagueCaption'] + '\n- Matchday: ' + str(data['matchday']) + '\n```')
+        await self.bot.say('```diff\n+ {}\n- Matchday: {}\n```'.format(data['leagueCaption'], data['matchday']))
 
         if 'standing' in data:
             for team in data['standing']:
@@ -171,7 +171,7 @@ class Football:
     @fixtures.command(name='last', pass_context=True)
     async def _lastfixtures(self, ctx: commands.Context, league_id: str):
         """Gets last matchday fixtures"""
-        headers = ['ID', 'Home', 'G', ' ' , 'G', 'Away']
+        headers = ['ID', 'Home', 'G', ' ', 'G', 'Away']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'p7')
         #  pprint(data)
 
@@ -192,7 +192,7 @@ class Football:
     @fixtures.command(name='next', pass_context=True)
     async def _nextfixtures(self, ctx: commands.Context, league_id: str):
         """Gets last matchday fixtures"""
-        headers = ['ID', 'Home', ' ' , 'Away', 'Date']
+        headers = ['ID', 'Home', ' ', 'Away', 'Date']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'n7')
         #  pprint(data)
 
@@ -214,7 +214,7 @@ class Football:
         """Gets specific matchday fixtures
 
         Defaults to matchday 1"""
-        headers = ['ID', 'Home', ' ', ' ' , 'Away']
+        headers = ['ID', 'Home', ' ', ' ', 'Away']
         data = await self._get_league_fixtures_matchday(ctx.message.server.id, league_id, matchday)
         #  pprint(data)
 
