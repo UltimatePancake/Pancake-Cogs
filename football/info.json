@@ -1,0 +1,9 @@
+{
+    "AUTHOR" : "UltimatePancake",
+    "INSTALL_MSG" : "[p]help football, trust me",
+    "NAME" : "Football",
+    "SHORT" : "Football stuff",
+    "DESCRIPTION" : "Displays football league leaderboards, fixtures and team information from football-data.org" ,
+    "TAGS" : ["football", "stats"],
+    "REQUIREMENTS" : ["tabulate"]
+}
