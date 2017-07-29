@@ -1,3 +1,27 @@
+"""
+    MIT License
+
+    Copyright (c) 2017 Pier-Angelo Gaetani
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+"""
+
 import discord
 import aiohttp
 import os
@@ -9,6 +33,9 @@ from random import randint
 
 class PUBG:
     """PUBG stats cog"""
+
+    __author__ = 'UltimatePancake'
+    __version__ = '0.1'
 
     def __init__(self, bot):
         self.bot = bot
@@ -36,10 +63,10 @@ class PUBG:
     async def _get_data(self, pubg_nickname: str, category: str, mode: str, region: str):
         """Gets user data from API"""
         if mode not in self.modes:
-            await self.bot.say('Mode `' + mode + '` is invalid\nAvailable modes are: ' + ', '.join(self.modes))
+            await self.bot.say('Mode `{}` is invalid\nAvailable modes are: {}'.format(mode, + ', '.join(self.modes)))
             return
         if region not in self.regions:
-            await self.bot.say('Region `' + region + '` is invalid\nAvailable regions are: ' + ', '.join(self.regions))
+            await self.bot.say('Region `{}` is invalid\nAvailable regions are: '.format(region, ', '.join(self.regions)))
             return
         try:
             if self.config['PUBG_TOKEN'] == '':

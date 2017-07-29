@@ -41,7 +41,7 @@ class DadJokes:
         api = 'https://icanhazdadjoke.com/'
         async with aiohttp.request('GET', api, headers={'Accept': 'text/plain'}) as r:
             result = await r.text()
-            await self.bot.say('`{}`'.format(result))
+            await self.bot.say('```\n{}\n```'.format(result))
 
 
 def setup(bot):

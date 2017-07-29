@@ -1,3 +1,27 @@
+"""
+    MIT License
+
+    Copyright (c) 2017 Pier-Angelo Gaetani
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+"""
+
 import discord
 import aiohttp
 import os
@@ -8,13 +32,12 @@ from .utils import checks
 from .utils.dataIO import dataIO
 from .utils.chat_formatting import pagify, box
 
-#  from pprint import pprint
-
 
 class Football:
     """Football stats"""
 
     __author__ = 'UltimatePancake'
+    __version__ = '0.2'
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
@@ -35,7 +58,7 @@ class Football:
             await self.bot.say(box('Requests made without an authentication token are limited to 100 requests per 24 hours.\nYou can request a key by registering at http://api.football-data.org and setting it via [p]football tokenset.'))
 
         async with aiohttp.get(url, headers=headers, params=params) as r:
-            #  pprint(vars(r))
+            # print(vars(r))
             if r.status == 200:
                 data = await r.json()
                 return data
@@ -50,11 +73,11 @@ class Football:
                 return
             elif r.status == 429:
                 await self.bot.say(box('Too many requests [429]\nYou exceeded your allowed requests per minute/day depending on API version and your user status.\nSee http://api.football-data.org/docs/v1/index.html#_request_throttling for more information.'))
-                await self.bot.say(box('Requests reset in ' + r.headers['X-RequestCounter-Reset'] + ' seconds.'))
+                await self.bot.say(box('Requests reset in {} seconds.'.format(r.headers['X-RequestCounter-Reset'])))
                 return
             else:
                 await self.bot.say(box('Pancake has no idea what you\'ve done, seriously.'))
-                await self.bot.say(box(r.status + '\n' + r.json()['error']))
+                await self.bot.say(box('{}\n{}'.format(r.status, r.json()['error'])))
                 return
 
     async def _get_full_leagues_data(self, server_id: str, season: str=None):
@@ -63,7 +86,7 @@ class Football:
             season = ''
 
         params = { 'season': season }
-        url = self.api_url + 'competitions/'
+        url = '{}competitions/'.format(self.api_url)
 
         return await self._make_request(url, params, server_id)
 
@@ -74,14 +97,14 @@ class Football:
         The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
         For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
         params = { 'timeFrame': timeframe }
-        url = self.api_url + 'competitions/{}/fixtures'.format(league_id)
+        url = '{}competitions/{}/fixtures'.format(self.api_url, league_id)
 
         return await self._make_request(url, params, server_id)
 
     async def _get_league_fixtures_matchday(self, server_id: str, league_id: str, matchday: str):
         """Retrieves specific league matchday fixtures from API"""
         params = { 'matchday': matchday }
-        url = self.api_url + 'competitions/{}/fixtures'.format(league_id)
+        url = '{}competitions/{}/fixtures'.format(self.api_url, league_id)
 
         return await self._make_request(url, params, server_id)
 
@@ -92,21 +115,21 @@ class Football:
         The value of the timeFrame argument must start with either p(ast) or n(ext), representing a timeframe either in the past or future. It is followed by a number in the range 1..99. It defaults to n7 in the fixture resource and is unset for fixture as a subresource.
         For instance: p6 would return all fixtures in the last 6 days, whereas n23 would result in returning all fixtures in the next 23 days."""
         params = { 'timeFrame': timeframe }
-        url = self.api_url + 'competitions/{}/leagueTable'.format(league_id)
+        url = '{}competitions/{}/leagueTable'.format(self.api_url, league_id)
 
         return await self._make_request(url, params, server_id)
 
     async def _get_team_info(self, server_id: str, team_id: str):
         """Retrieves specific team info"""
         params = {}
-        url = self.api_url + 'teams/{}'.format(team_id)
+        url = '{}teams/{}'.format(self.api_url, team_id)
 
         return await self._make_request(url, params, server_id)
 
     async def _get_team_players(self, server_id: str, team_id: str):
         """Retrieves specific team players"""
         params = {}
-        url = self.api_url + 'teams/{}/players'.format(team_id)
+        url = '{}teams/{}/players'.format(self.api_url, team_id)
 
         return await self._make_request(url, params, server_id)
 
@@ -144,7 +167,7 @@ class Football:
         data = await self._get_league_leaderboard(ctx.message.server.id, league_id, matchday)
         pretty_data = []
 
-        await self.bot.say('```diff\n+ ' + data['leagueCaption'] + '\n- Matchday: ' + str(data['matchday']) + '\n```')
+        await self.bot.say('```diff\n+ {}\n- Matchday: {}\n```'.format(data['leagueCaption'], data['matchday']))
 
         if 'standing' in data:
             for team in data['standing']:
@@ -154,7 +177,7 @@ class Football:
         elif 'standings' in data:
             for group, v in data['standings'].items():
                 asyncio.sleep(1)
-                await self.bot.say('```diff\n+ Group ' + group + '```')
+                await self.bot.say('```diff\n+ Group {}```'.format(group))
                 pretty_data = []
 
                 for team in v:
@@ -173,7 +196,6 @@ class Football:
         """Gets last matchday fixtures"""
         headers = ['ID', 'Home', 'G', ' ' , 'G', 'Away']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'p7')
-        #  pprint(data)
 
         await self.bot.say('```diff\n+ Last fixtures```')
         pretty_data = []
@@ -194,7 +216,6 @@ class Football:
         """Gets last matchday fixtures"""
         headers = ['ID', 'Home', ' ' , 'Away', 'Date']
         data = await self._get_league_fixtures_timeframe(ctx.message.server.id, league_id, 'n7')
-        #  pprint(data)
 
         await self.bot.say('```diff\n+ Next fixtures```')
         pretty_data = []
@@ -216,9 +237,8 @@ class Football:
         Defaults to matchday 1"""
         headers = ['ID', 'Home', ' ', ' ' , 'Away']
         data = await self._get_league_fixtures_matchday(ctx.message.server.id, league_id, matchday)
-        #  pprint(data)
 
-        await self.bot.say('```diff\n+ Matchday ' + matchday + ' fixtures```')
+        await self.bot.say('```diff\n+ Matchday {} fixtures```'.format(matchday))
         pretty_data = []
         for fixture in data['fixtures']:
             pretty_data.append([
@@ -253,7 +273,6 @@ class Football:
                 headers = ['Name', 'Jersey', 'Nationality', 'DoB', 'Position', 'Contract']
                 pretty_data = []
                 for player in team_players['players']:
-                    #  pprint(player)
                     pretty_data.append([
                         player['name'],
                         player['jerseyNumber'],

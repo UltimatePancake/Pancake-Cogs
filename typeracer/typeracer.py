@@ -1,11 +1,38 @@
+"""
+    MIT License
+
+    Copyright (c) 2017 Pier-Angelo Gaetani
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+"""
+
 import discord
 import aiohttp
-import random
+from random import randint
 from discord.ext import commands
 
 
 class TypeRacer:
     """Typeracer stats"""
+
+    __author__ = 'UltimatePancake'
+    __version__ = '0.1'
 
     def __init__(self, bot):
         self.bot = bot
@@ -18,11 +45,9 @@ class TypeRacer:
             if r.status == 200:
                 result = await r.json()
 
-                random_colour = int("0x%06x" % random.randint(0, 0xFFFFFF), 16)
-
                 last_scores = '\n'.join(str(int(x)) for x in result['tstats']['recentScores'])
 
-                embed = discord.Embed(colour=random_colour)
+                embed = discord.Embed(colour=randint(0, 0xFFFFFF))
                 embed.set_author(name=result['name'])
                 embed.add_field(name='Country', value=':flag_{}:'.format(result['country']))
                 embed.add_field(name='Level', value=result['tstats']['level'])
