@@ -5,5 +5,5 @@
     "SHORT" : "It displays dank memes",
     "DESCRIPTION" : "It displays dank memes, nothing more, nothing less.",
     "TAGS" : ["dickbutt", "barbaric", "meme", "dank"],
-    "HIDDEN" : True
+    "HIDDEN" : true
 }
