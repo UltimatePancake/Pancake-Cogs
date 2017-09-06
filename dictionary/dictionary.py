@@ -1,4 +1,3 @@
-import discord
 from discord.ext import commands
 # from .utils.dataIO import fileIO
 from PyDictionary import PyDictionary
@@ -40,7 +39,6 @@ class Dictionary:
                     else:
                         str_buffer += str(counter) + ". " + val + "\n"
                         counter += 1
-        print(str_buffer)
         await self.bot.delete_message(x)
         await self.bot.say(str_buffer)
 
@@ -50,6 +48,10 @@ class Dictionary:
         x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.antonym(search_term)
+        if result is None:
+            await self.bot.delete_message(x)
+            await self.bot.say("This word is not in the dictionary.")
+            return
         await self.bot.delete_message(x)
         await self.bot.say("Antonyms for **" + search_term + "**: *" + "*, *".join(result) + "*")
 
@@ -59,6 +61,10 @@ class Dictionary:
         x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
         result = self.dictionary.synonym(search_term)
+        if result is None:
+            await self.bot.delete_message(x)
+            await self.bot.say("This word is not in the dictionary.")
+            return
         await self.bot.delete_message(x)
         await self.bot.say("Synonyms for **" + search_term + "**: *" + "*, *".join(result) + "*")
 
