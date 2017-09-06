@@ -60,6 +60,10 @@ class Dictionary:
         """Displays synonyms for a given word"""
         x = await self.bot.say("Searching...")
         search_term = word.split(" ", 1)[0]
+        if result is None:
+            await self.bot.delete_message(x)
+            await self.bot.say("This word is not in the dictionary.")
+            return
         result = self.dictionary.synonym(search_term)
         if result is None:
             await self.bot.delete_message(x)
